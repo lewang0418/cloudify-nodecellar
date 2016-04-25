@@ -69,8 +69,8 @@ node_templates:
       # the nodecellar host
       ###########################################################
 
-    #  - target: nodecellar_security_group
-    #    type: cloudify.openstack.server_connected_to_security_group
+      - target: nodecellar_security_group
+        type: cloudify.openstack.server_connected_to_security_group
 
   ###########################################################
   # A security group to enable access to the nodejs host
@@ -80,14 +80,14 @@ node_templates:
   # receive web traffic.
   ###########################################################
 
-  #nodecellar_security_group:
-  #  type: cloudify.openstack.nodes.SecurityGroup
-  #  properties:
-  #    security_group:
-  #      name: nodecellar_security_group
-  #    rules:
-  #      - remote_ip_prefix: 0.0.0.0/0
-  #        port: { get_property: [ nodecellar, port ] }
+  nodecellar_security_group:
+    type: cloudify.openstack.nodes.SecurityGroup
+    properties:
+      security_group:
+        name: nodecellar_security_group
+      rules:
+        - remote_ip_prefix: 0.0.0.0/0
+          port: { get_property: [ nodecellar, port ] }
 
   ###########################################################
   # An ip to be attached to the nodejs host, since
